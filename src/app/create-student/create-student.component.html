@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Crear Nuevo Estudiante</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            <div *ngIf="nombre!.invalid && (nombre!.dirty || nombre!.touched)" class="text-danger">
+              <div *ngIf="nombre!.errors!['required']">Nombre es requerido.</div>
+              <div *ngIf="nombre!.errors!['maxlength']">Nombre no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="paterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="paterno" formControlName="paterno">
+            <div *ngIf="paterno!.invalid && (paterno!.dirty || paterno!.touched)" class="text-danger">
+              <div *ngIf="paterno!.errors!['required']">Apellido Paterno es requerido.</div>
+              <div *ngIf="paterno!.errors!['maxlength']">Apellido Paterno no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="materno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="materno" formControlName="materno">
+            <div *ngIf="materno?.invalid && (materno?.dirty || materno?.touched)" class="text-danger">
+              <div *ngIf="materno!.errors!['maxlength']">Apellido Materno no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="curp" class="form-label">CURP</label>
+            <input type="text" class="form-control" id="curp" formControlName="curp">
+            <div *ngIf="curp!.invalid && (curp!.dirty || curp!.touched)" class="text-danger">
+              <div *ngIf="curp!.errors!['required']">CURP es requerido.</div>
+              <div *ngIf="curp!.errors!['maxlength']">CURP no puede exceder 18 caracteres.</div>
+              <div *ngIf="curp!.errors!['invalidCurp']">Formato de CURP inválido. ej:XXXX000000XXXXXX01</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="matricula" class="form-label">Matrícula</label>
+            <input type="text" class="form-control" id="matricula" formControlName="matricula">
+            <div *ngIf="matricula!.invalid && (matricula!.dirty || matricula!.touched)" class="text-danger">
+              <div *ngIf="matricula!.errors!['required']">Matrícula es requerida.</div>
+              <div *ngIf="matricula!.errors!['maxlength'] || matricula!.errors!['fixedLengthValidator']">Matrícula debe ser de 20 caracteres.</div>
+              
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Crear Estudiante</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

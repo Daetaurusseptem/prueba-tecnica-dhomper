@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Actualizar Estudiante</h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+        <form *ngIf="!loading" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            <div *ngIf="campoNoValido('nombre')" class="text-danger">
+              <div *ngIf="studentForm.get('nombre')!.errors!['required']">Nombre es requerido.</div>
+              <div *ngIf="studentForm.get('nombre')!.errors!['maxlength']">Nombre no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="paterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="paterno" formControlName="paterno">
+            <div *ngIf="campoNoValido('paterno')" class="text-danger">
+              <div *ngIf="studentForm.get('paterno')!.errors!['required']">Apellido Paterno es requerido.</div>
+              <div *ngIf="studentForm.get('paterno')!.errors!['maxlength']">Apellido Paterno no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="materno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="materno" formControlName="materno">
+            <div *ngIf="campoNoValido('materno')" class="text-danger">
+              <div *ngIf="studentForm.get('materno')!.errors!['maxlength']">Apellido Materno no puede exceder 50 caracteres.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="curp" class="form-label">CURP</label>
+            <input type="text" class="form-control" id="curp" formControlName="curp">
+            <div *ngIf="campoNoValido('curp')" class="text-danger">
+              <div *ngIf="studentForm.get('curp')!.errors!['required']">CURP es requerido.</div>
+              <div *ngIf="studentForm.get('curp')!.errors!['maxlength']">CURP no puede exceder 18 caracteres.</div>
+              <div *ngIf="studentForm.get('curp')!.errors!['invalidCurp']">Formato de CURP inválido.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="matricula" class="form-label">Matrícula</label>
+            <input type="text" class="form-control" id="matricula" formControlName="matricula">
+            <div *ngIf="campoNoValido('matricula')" class="text-danger">
+              <div *ngIf="studentForm.get('matricula')!.errors!['required']">Matrícula es requerida.</div>
+              <div *ngIf="studentForm.get('matricula')!.errors!['maxlength']">Matrícula no puede exceder 20 caracteres.</div>
+              <div *ngIf="studentForm.get('matricula')!.errors!['invalidLength']">Matrícula debe tener exactamente 20 caracteres.</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Actualizar Estudiante</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
